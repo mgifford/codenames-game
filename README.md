@@ -36,6 +36,15 @@ Result image will be tagged as `codenames-game:latest`.
  - Default http port (8095) can be changed via `CODENAMES_HTTP_PORT`
  - `NO_CONSOLE_COLORS=1` to disable colorful console output 
 
+## P2P / Serverless mode
+The frontend includes a peer-to-peer game mode powered by [PeerJS](https://peerjs.com/).
+Players can connect directly — no central game server required — making it suitable for
+local Wi-Fi, mobile hotspots, or even a LAN with no internet access.
+
+See **[docs/peerjs-local-gaming.md](docs/peerjs-local-gaming.md)** for a full explanation
+of how it works, the host/guest architecture, the wire protocol, and setup tips for
+different network environments.
+
 ## How to play
 See [Wikipedia](https://en.wikipedia.org/wiki/Codenames_(board_game)) for the rules and details.
 
