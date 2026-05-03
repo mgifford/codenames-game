@@ -52,8 +52,8 @@ mat-toolbar {
         width: 2.5rem;
         color: white;
 
-        &.score-blues { background-color: #54a4f3; }
-        &.score-reds  { background-color: #dc5c60; }
+        &.score-blues { background-color: #1565C0; }
+        &.score-reds  { background-color: #C62828; }
     }
 }
 
@@ -122,8 +122,8 @@ mat-toolbar {
 .hint-word-field  { flex: 2; min-width: 120px; }
 .hint-count-field { flex: 1; min-width: 80px; }
 
-.send-button-blue { background-color: #64b5f6 !important; color: white !important; }
-.send-button-red  { background-color: #e57373 !important; color: white !important; }
+.send-button-blue { background-color: #1565C0 !important; color: white !important; }
+.send-button-red  { background-color: #C62828 !important; color: white !important; }
 
 // ── Log ───────────────────────────────────────────────────────────────────────
 
@@ -137,7 +137,7 @@ mat-toolbar {
 }
 
 .muted {
-    color: rgba(0,0,0,0.4);
+    color: #595959;
 }
 
 .turn {

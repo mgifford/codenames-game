@@ -1,4 +1,8 @@
 <mat-card matRipple class="agent"
+    role="button"
+    [attr.tabindex]="uncovered ? -1 : 0"
+    [attr.aria-label]="cardAriaLabel"
+    [attr.aria-disabled]="uncovered ? 'true' : null"
     [ngClass]="{
         'agent-uncovered': uncovered === true,
         'hover-effect': side == UNKNOWN && !uncoveringInProgress,
@@ -8,11 +12,14 @@
         'agent-red': side == RED,
         'agent-black': side == BLACK,
         'agent-neutral':side == NEUTRAL
-    }">
+    }"
+    (keydown.enter)="onKeyActivate($event)"
+    (keydown.space)="onKeyActivate($event)">
 
     <div class="agent-name"
         [class.show-name]="fontSize"
-        [style.font-size.px]="fontSize">
+        [style.font-size.px]="fontSize"
+        aria-hidden="true">
 
         {{name}}
     </div>

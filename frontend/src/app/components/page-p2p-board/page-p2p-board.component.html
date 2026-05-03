@@ -18,21 +18,23 @@
 
     <div class="spacer"><!-- spacer --></div>
 
-    <button class="help-btn" mat-icon-button (click)="onHelpClick()">
-        <span class="material-icons">help_outline</span>
+    <button class="help-btn" mat-icon-button (click)="onHelpClick()" aria-label="Правила игры">
+        <span class="material-icons" aria-hidden="true">help_outline</span>
     </button>
 
     <!-- Scores -->
-    <div class="score score-blues">
-        <span class="mat-h1"><strong>{{game?.blueLeft || 0}}</strong></span>
+    <div class="score score-blues" aria-live="polite" [attr.aria-label]="'Синих осталось: ' + (game?.blueLeft || 0)">
+        <span class="mat-h1" aria-hidden="true"><strong>{{game?.blueLeft || 0}}</strong></span>
     </div>
-    <div class="score score-reds">
-        <span class="mat-h1"><strong>{{game?.redLeft || 0}}</strong></span>
+    <div class="score score-reds" aria-live="polite" [attr.aria-label]="'Красных осталось: ' + (game?.redLeft || 0)">
+        <span class="mat-h1" aria-hidden="true"><strong>{{game?.redLeft || 0}}</strong></span>
     </div>
 </mat-toolbar>
 
 <!-- Turn indicator -->
 <div class="turn-banner"
+    role="status"
+    aria-live="polite"
     [class.turn-red]="game?.move?.side === SIDE_RED"
     [class.turn-blue]="game?.move?.side === SIDE_BLUE"
     *ngIf="game && !game.isFinished">
@@ -52,7 +54,7 @@
     </span>
 </div>
 
-<div class="game-over-banner" *ngIf="game?.isFinished">
+<div class="game-over-banner" role="alert" aria-live="assertive" *ngIf="game?.isFinished">
     Игра завершена!
 </div>
 

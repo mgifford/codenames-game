@@ -28,20 +28,22 @@
 }
 
 .side-red {
-    background-color: #e57373;
-    color: white;
+    background-color: #ffcdd2;
+    color: #b71c1c;
 
     .match-count {
-        background-color: #ca6760;
+        background-color: #b71c1c;
+        color: white;
     }
 }
 
 .side-blue {
-    background-color: #64b5f6;
-    color: white;
+    background-color: #bbdefb;
+    color: #0d47a1;
 
     .match-count {
-        background-color: #6b96d1;
+        background-color: #0d47a1;
+        color: white;
     }
 }
 

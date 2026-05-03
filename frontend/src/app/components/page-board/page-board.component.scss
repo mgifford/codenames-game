@@ -36,7 +36,7 @@ mat-toolbar {
         }
 
         .wait-for-players {
-            opacity: 0.5;
+            color: #595959;
         }
 
         .players-online {
@@ -52,11 +52,11 @@ mat-toolbar {
         color: white;
 
         &.score-blues {
-            background-color: #54a4f3;
+            background-color: #1565C0;
         }
 
         &.score-reds {
-            background-color: #dc5c60;
+            background-color: #C62828;
         }
     }
 }
