@@ -1,7 +1,7 @@
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -15,8 +15,11 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -32,12 +35,15 @@ import { PageJoinComponent } from './components/page-join/page-join.component';
 import { PageStartComponent } from './components/page-start/page-start.component';
 import { LogItemComponent } from './components/page-board/game-flow-panel/log-item/log-item.component';
 import { PageNewGameComponent } from './components/page-new-game/page-new-game.component';
+import { PageP2PLobbyComponent } from './components/page-p2p-lobby/page-p2p-lobby.component';
+import { PageP2PBoardComponent } from './components/page-p2p-board/page-p2p-board.component';
 import { PageRulesComponent } from './components/page-rules/page-rules.component';
 import { DictionariesResolve } from './services/dictionaries.resolve';
 import { DictionariesService } from './services/dictionaries.service';
 import { GameService } from './services/game.service';
 import { HttpLoadingStatusInterceptor } from './services/http-loading-status.interceptor';
 import { HttpLoadingStatusService } from './services/http-loading-status.service';
+import { PeerGameService } from './services/peer-game.service';
 import { SpymasterHintInput } from './components/page-board/game-flow-panel/spymaster-form-field/spymaster-hint-input.component';
 
 @NgModule({
@@ -54,7 +60,8 @@ import { SpymasterHintInput } from './components/page-board/game-flow-panel/spym
         PageNewGameComponent,
         PageRulesComponent,
         SpymasterHintInput,
-        SpymasterHintInput
+        PageP2PLobbyComponent,
+        PageP2PBoardComponent
     ],
     imports: [
         BrowserModule,
@@ -62,6 +69,7 @@ import { SpymasterHintInput } from './components/page-board/game-flow-panel/spym
         AppRoutingModule,
         BrowserAnimationsModule,
         ClipboardModule,
+        FormsModule,
         MatButtonModule,
         MatDividerModule,
         MatSnackBarModule,
@@ -77,6 +85,9 @@ import { SpymasterHintInput } from './components/page-board/game-flow-panel/spym
         MatDialogModule,
         MatFormFieldModule,
         MatInputModule,
+        MatRadioModule,
+        MatSelectModule,
+        MatTooltipModule,
         ReactiveFormsModule
     ],
     providers: [
@@ -85,7 +96,8 @@ import { SpymasterHintInput } from './components/page-board/game-flow-panel/spym
         DictionariesService,
         GameService,
         HttpLoadingStatusService,
-        AppRoutingNavigationService
+        AppRoutingNavigationService,
+        PeerGameService
     ],
     bootstrap: [AppComponent]
 })

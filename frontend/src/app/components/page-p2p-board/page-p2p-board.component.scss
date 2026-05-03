@@ -1,0 +1,160 @@
+:host {
+    min-height: 100vh;
+    min-width: 780px;
+    background-color: #e9e9e9;
+    display: grid;
+    grid-template-rows: auto auto auto 1fr auto;
+}
+
+mat-toolbar {
+    display: grid;
+    grid-template-columns: repeat(3, auto) 1fr repeat(3, auto);
+    grid-column-gap: 0.5rem;
+    border-bottom: #e4e4e4 1px solid;
+    height: 56px;
+
+    .delimiter {
+        border-right: #e4e4e4 1px solid;
+        height: 2.5rem;
+        margin: 0 0.4rem;
+    }
+
+    .spacer { flex: 1; }
+
+    .help-btn { opacity: 0.5; }
+
+    .stat {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 13px;
+
+        .badge, .role-badge {
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .badge-host   { background: #6a1b9a; }
+        .badge-guest  { background: #0277bd; }
+        .role-spy     { background: #c62828; }
+        .role-op      { background: #2e7d32; }
+
+        .games-played { color: #795548; }
+    }
+
+    .score {
+        text-align: center;
+        padding-top: 0.1rem;
+        border-radius: 0.2rem;
+        width: 2.5rem;
+        color: white;
+
+        &.score-blues { background-color: #54a4f3; }
+        &.score-reds  { background-color: #dc5c60; }
+    }
+}
+
+.turn-banner, .game-over-banner {
+    padding: 0.4rem 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.turn-banner {
+    &.turn-red  { background: #ffcdd2; color: #b71c1c; }
+    &.turn-blue { background: #bbdefb; color: #0d47a1; }
+}
+
+.game-over-banner {
+    background: #4caf50;
+    color: white;
+    font-weight: bold;
+}
+
+.grid-container {
+    width: 100%;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+}
+
+.grid-list {
+    mat-grid-tile {
+        overflow: visible;
+
+        .agent-wrapper {
+            position: absolute;
+            left: 0; right: 0; top: 0; bottom: 0;
+        }
+    }
+}
+
+// ── Bottom panel ─────────────────────────────────────────────────────────────
+
+.bottom-panel {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+}
+
+.hint-section, .end-turn-section {
+    min-width: 260px;
+}
+
+.hint-title {
+    margin: 0 0 0.5rem;
+}
+
+.hint-form {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.hint-word-field  { flex: 2; min-width: 120px; }
+.hint-count-field { flex: 1; min-width: 80px; }
+
+.send-button-blue { background-color: #64b5f6 !important; color: white !important; }
+.send-button-red  { background-color: #e57373 !important; color: white !important; }
+
+// ── Log ───────────────────────────────────────────────────────────────────────
+
+.game-log {
+    overflow-y: auto;
+    max-height: 200px;
+}
+
+.messages-area {
+    font-size: 0.85rem;
+}
+
+.muted {
+    color: rgba(0,0,0,0.4);
+}
+
+.turn {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 6px;
+}
+
+.log-item {
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: #f5f5f5;
+
+    &.log-hint    { font-weight: bold; }
+    &.log-red     { background: #ffcdd2; color: #b71c1c; }
+    &.log-blue    { background: #bbdefb; color: #0d47a1; }
+    &.log-assassin{ background: #424242; color: white; }
+    &.log-neutral { background: #ffe0b2; color: #5d4037; }
+}
