@@ -1,0 +1,120 @@
+<mat-card class="mat-elevation-z4 lobby-card">
+    <mat-card-title>Codenames – P2P режим</mat-card-title>
+    <mat-card-subtitle>Игра без сервера через прямое соединение</mat-card-subtitle>
+
+    <mat-card-content>
+
+        <!-- Tab switcher -->
+        <div class="tabs">
+            <button mat-button
+                [class.tab-active]="activeTab === 'host'"
+                (click)="activeTab = 'host'">
+                Создать комнату (Хост)
+            </button>
+            <button mat-button
+                [class.tab-active]="activeTab === 'join'"
+                (click)="activeTab = 'join'">
+                Войти в комнату
+            </button>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <!-- ── HOST PANEL ─────────────────────────────────────────────────── -->
+        <div *ngIf="activeTab === 'host'" class="panel">
+
+            <p class="hint-text">
+                Вы будете хостом (источником правды). Создайте комнату и поделитесь
+                <strong>ID комнаты</strong> с другими игроками.
+            </p>
+
+            <!-- Word list selection -->
+            <div class="field-row" *ngIf="!hostReady">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Набор слов</mat-label>
+                    <mat-select [(ngModel)]="selectedWordListIndex">
+                        <mat-option *ngFor="let list of wordLists; let i = index" [value]="i">
+                            {{list.name}} <span *ngIf="list.warn"> ⚠️</span>
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <!-- Role selection -->
+            <div class="field-row" *ngIf="!hostReady">
+                <label class="role-label">Ваша роль:</label>
+                <mat-radio-group [(ngModel)]="hostRole" class="role-group">
+                    <mat-radio-button value="spymaster">Капитан (Spymaster)</mat-radio-button>
+                    <mat-radio-button value="operative">Игрок (Operative)</mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+            <div class="field-row" *ngIf="!hostReady">
+                <button mat-raised-button color="primary"
+                    [disabled]="hostWaiting"
+                    (click)="onCreateRoomClick()">
+                    Создать комнату
+                </button>
+            </div>
+
+            <!-- Room ID display -->
+            <div *ngIf="peerId" class="peer-id-block">
+                <p class="room-label">ID вашей комнаты:</p>
+                <div class="peer-id-row">
+                    <code class="peer-id">{{peerId}}</code>
+                    <button mat-icon-button (click)="copyPeerId()" matTooltip="Скопировать">
+                        <span class="material-icons">content_copy</span>
+                    </button>
+                </div>
+                <p class="hint-text">
+                    Передайте этот ID другим игрокам. Вы можете начать играть даже без подключённых гостей.
+                </p>
+                <button mat-raised-button color="accent" (click)="onHostStartGameClick()">
+                    Начать игру
+                </button>
+            </div>
+
+            <p *ngIf="hostStatus" class="status-text">{{hostStatus}}</p>
+        </div>
+
+        <!-- ── JOIN PANEL ─────────────────────────────────────────────────── -->
+        <div *ngIf="activeTab === 'join'" class="panel">
+
+            <p class="hint-text">
+                Введите <strong>ID комнаты</strong>, который дал вам хост, и выберите свою роль.
+            </p>
+
+            <div class="field-row">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>ID комнаты хоста</mat-label>
+                    <input matInput [formControl]="peerIdControl" placeholder="cn-abc1234">
+                    <mat-error *ngIf="peerIdControl.invalid">Введите корректный ID</mat-error>
+                </mat-form-field>
+            </div>
+
+            <!-- Role selection -->
+            <div class="field-row">
+                <label class="role-label">Ваша роль:</label>
+                <mat-radio-group [(ngModel)]="joinRole" class="role-group">
+                    <mat-radio-button value="spymaster">Капитан (Spymaster)</mat-radio-button>
+                    <mat-radio-button value="operative">Игрок (Operative)</mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+            <div class="field-row">
+                <button mat-raised-button color="primary"
+                    [disabled]="peerIdControl.invalid || joinConnecting"
+                    (click)="onJoinClick()">
+                    Подключиться
+                </button>
+            </div>
+
+            <p *ngIf="joinStatus" class="status-text">{{joinStatus}}</p>
+        </div>
+
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+        <button mat-button (click)="onBackClick()">Назад</button>
+    </mat-card-actions>
+</mat-card>

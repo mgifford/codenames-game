@@ -15,6 +15,10 @@ export class PageStartComponent {
         this.navigation.toNewGame();
     }
 
+    onP2PClick() {
+        this.navigation.toP2PLobby();
+    }
+
     onRulesClick() {
         this.navigation.toRules();
     }

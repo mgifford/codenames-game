@@ -13,9 +13,17 @@
         Другие участники смогут присоединиться к игре после ее создания в любой момент.
     </p>
 
+    <p>
+        Для игры без сервера через прямое P2P-соединение используйте кнопку
+        <span class="b">P2P режим</span> — работает на GitHub Pages и в локальной сети.
+    </p>
+
     <mat-card-actions align="end">
         <button mat-button color="warn" (click)="onRulesClick()">
             Как играть?
+        </button>
+        <button mat-stroked-button color="accent" (click)="onP2PClick()">
+            P2P режим
         </button>
         <button mat-raised-button color="primary" (click)="onCreateGameClick()">
             Создать новую игру

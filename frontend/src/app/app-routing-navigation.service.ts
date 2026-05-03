@@ -30,6 +30,14 @@ export class AppRoutingNavigationService {
         this.router.navigate(['game', gameId, 'player', playerType, 'board']);
     }
 
+    toP2PLobby() {
+        this.router.navigate(['p2p', 'lobby']);
+    }
+
+    toP2PBoard() {
+        this.router.navigate(['p2p', 'board']);
+    }
+
     toError(code: number) {
         this.router.navigate(['error', code]);
     }
