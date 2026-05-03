@@ -12,16 +12,16 @@
 
     <div><!-- spacer --></div>
 
-    <button class="refresh" mat-icon-button (click)="onHelpClick()">
-        <span class="material-icons">help_outline</span>
+    <button class="refresh" mat-icon-button (click)="onHelpClick()" aria-label="Правила игры">
+        <span class="material-icons" aria-hidden="true">help_outline</span>
     </button>
 
-    <div class="score score-blues">
-        <span class="mat-h1"><strong>{{game.blueLeft}}</strong></span>
+    <div class="score score-blues" aria-live="polite" [attr.aria-label]="'Синих осталось: ' + game.blueLeft">
+        <span class="mat-h1" aria-hidden="true"><strong>{{game.blueLeft}}</strong></span>
     </div>
 
-    <div class="score score-reds">
-        <span class="mat-h1"><strong>{{game.redLeft}}</strong></span>
+    <div class="score score-reds" aria-live="polite" [attr.aria-label]="'Красных осталось: ' + game.redLeft">
+        <span class="mat-h1" aria-hidden="true"><strong>{{game.redLeft}}</strong></span>
     </div>
 </mat-toolbar>
 

@@ -62,8 +62,8 @@
                 <p class="room-label">ID вашей комнаты:</p>
                 <div class="peer-id-row">
                     <code class="peer-id">{{peerId}}</code>
-                    <button mat-icon-button (click)="copyPeerId()" matTooltip="Скопировать">
-                        <span class="material-icons">content_copy</span>
+                    <button mat-icon-button (click)="copyPeerId()" matTooltip="Скопировать" aria-label="Скопировать ID комнаты">
+                        <span class="material-icons" aria-hidden="true">content_copy</span>
                     </button>
                 </div>
                 <p class="hint-text">
