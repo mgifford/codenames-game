@@ -55,7 +55,7 @@ export class PageP2PLobbyComponent implements OnInit, OnDestroy {
             .subscribe(id => {
                 this.peerId = id;
                 if (id) {
-                    this.hostStatus = 'Комната создана. Поделитесь ID с другими игроками.';
+                    this.hostStatus = 'Room created. Share the Room ID with other players.';
                     this.hostReady = true;
                 }
                 this.cd.markForCheck();
@@ -75,10 +75,10 @@ export class PageP2PLobbyComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.destroy$))
             .subscribe(msg => {
                 if (this.peerService.isHost) {
-                    this.hostStatus = `Ошибка: ${msg}`;
+                    this.hostStatus = `Error: ${msg}`;
                     this.hostWaiting = false;
                 } else {
-                    this.joinStatus = `Ошибка: ${msg}`;
+                    this.joinStatus = `Error: ${msg}`;
                     this.joinConnecting = false;
                 }
                 this.cd.markForCheck();
@@ -93,7 +93,7 @@ export class PageP2PLobbyComponent implements OnInit, OnDestroy {
     // ── Host actions ──────────────────────────────────────────────────────────
 
     onCreateRoomClick() {
-        this.hostStatus = 'Открываем комнату…';
+        this.hostStatus = 'Opening room…';
         this.hostWaiting = true;
         this.peerService.initAsHost(this.selectedWordListIndex, this.hostRole);
     }
@@ -107,7 +107,7 @@ export class PageP2PLobbyComponent implements OnInit, OnDestroy {
     onJoinClick() {
         if (this.peerIdControl.invalid) return;
         const hostId = this.peerIdControl.value.trim();
-        this.joinStatus = 'Подключаемся…';
+        this.joinStatus = 'Connecting…';
         this.joinConnecting = true;
         this.peerService.joinAsGuest(hostId, this.joinRole);
     }

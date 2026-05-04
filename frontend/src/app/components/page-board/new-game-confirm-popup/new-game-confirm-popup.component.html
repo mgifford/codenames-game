@@ -1,16 +1,16 @@
-<h2 mat-dialog-title>Новая игра</h2>
+<h2 mat-dialog-title>New Game</h2>
 
 <div mat-dialog-content>
     <p>
-        Текущая игра еще не завершена.<br/>
-        Операцию отменить будет нельзя.<br/>
+        The current game is not finished yet.<br/>
+        This action cannot be undone.<br/>
     </p>
     <p>
-        Вы уверены?
+        Are you sure?
     </p>
 </div>
 
 <mat-dialog-actions align="end" class="action-buttons">
-    <button mat-button mat-dialog-close>Ой, нет</button>
-    <button mat-button color="primary" [mat-dialog-close]="1">Абсолютно</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button color="primary" [mat-dialog-close]="1">Yes, start new game</button>
 </mat-dialog-actions>

@@ -80,8 +80,8 @@ export class PageP2PBoardComponent implements OnInit, OnDestroy, AfterViewInit {
                 this.updateLog();
                 if (state!.isFinished) {
                     this.snackBar.open(
-                        'Игра завершена! Нажмите «Новая игра» чтобы сыграть ещё.',
-                        'Супер!');
+                        'Game over! Click "New Game" to play again.',
+                        'Great!');
                 }
                 this.cd.markForCheck();
             });
@@ -89,7 +89,7 @@ export class PageP2PBoardComponent implements OnInit, OnDestroy, AfterViewInit {
         this.peerService.error$
             .pipe(takeUntil(this.destroy$))
             .subscribe(msg => {
-                this.snackBar.open(`Ошибка соединения: ${msg}`, 'Ок', { duration: 5000 });
+                this.snackBar.open(`Connection error: ${msg}`, 'Ok', { duration: 5000 });
                 this.cd.markForCheck();
             });
     }
@@ -153,7 +153,7 @@ export class PageP2PBoardComponent implements OnInit, OnDestroy, AfterViewInit {
 
     onNewGameClick() {
         if (!this.isHost) {
-            this.snackBar.open('Только хост может начать новую игру.', 'Ок', { duration: 3000 });
+            this.snackBar.open('Only the host can start a new game.', 'Ok', { duration: 3000 });
             return;
         }
         if (this.game?.isFinished) {
@@ -216,10 +216,10 @@ export class PageP2PBoardComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     get roleLabel(): string {
-        return this.isSpymaster ? 'Капитан' : 'Игрок';
+        return this.isSpymaster ? 'Spymaster' : 'Operative';
     }
 
     get connectionBadge(): string {
-        return this.isHost ? 'Хост' : 'Гость';
+        return this.isHost ? 'Host' : 'Guest';
     }
 }
