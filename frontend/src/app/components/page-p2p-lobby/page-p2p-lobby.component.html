@@ -1,6 +1,6 @@
 <mat-card class="mat-elevation-z4 lobby-card">
-    <mat-card-title>Codenames – P2P режим</mat-card-title>
-    <mat-card-subtitle>Игра без сервера через прямое соединение</mat-card-subtitle>
+    <mat-card-title>Codenames – P2P Mode</mat-card-title>
+    <mat-card-subtitle>Serverless play via direct peer-to-peer connection</mat-card-subtitle>
 
     <mat-card-content>
 
@@ -9,12 +9,12 @@
             <button mat-button
                 [class.tab-active]="activeTab === 'host'"
                 (click)="activeTab = 'host'">
-                Создать комнату (Хост)
+                Create Room (Host)
             </button>
             <button mat-button
                 [class.tab-active]="activeTab === 'join'"
                 (click)="activeTab = 'join'">
-                Войти в комнату
+                Join Room
             </button>
         </div>
 
@@ -24,14 +24,14 @@
         <div *ngIf="activeTab === 'host'" class="panel">
 
             <p class="hint-text">
-                Вы будете хостом (источником правды). Создайте комнату и поделитесь
-                <strong>ID комнаты</strong> с другими игроками.
+                You will be the host (source of truth). Create a room and share the
+                <strong>Room ID</strong> with other players.
             </p>
 
             <!-- Word list selection -->
             <div class="field-row" *ngIf="!hostReady">
                 <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Набор слов</mat-label>
+                    <mat-label>Word set</mat-label>
                     <mat-select [(ngModel)]="selectedWordListIndex">
                         <mat-option *ngFor="let list of wordLists; let i = index" [value]="i">
                             {{list.name}} <span *ngIf="list.warn"> ⚠️</span>
@@ -42,10 +42,10 @@
 
             <!-- Role selection -->
             <div class="field-row" *ngIf="!hostReady">
-                <label class="role-label">Ваша роль:</label>
+                <label class="role-label">Your role:</label>
                 <mat-radio-group [(ngModel)]="hostRole" class="role-group">
-                    <mat-radio-button value="spymaster">Капитан (Spymaster)</mat-radio-button>
-                    <mat-radio-button value="operative">Игрок (Operative)</mat-radio-button>
+                    <mat-radio-button value="spymaster">Spymaster</mat-radio-button>
+                    <mat-radio-button value="operative">Operative</mat-radio-button>
                 </mat-radio-group>
             </div>
 
@@ -53,24 +53,24 @@
                 <button mat-raised-button color="primary"
                     [disabled]="hostWaiting"
                     (click)="onCreateRoomClick()">
-                    Создать комнату
+                    Create Room
                 </button>
             </div>
 
             <!-- Room ID display -->
             <div *ngIf="peerId" class="peer-id-block">
-                <p class="room-label">ID вашей комнаты:</p>
+                <p class="room-label">Your Room ID:</p>
                 <div class="peer-id-row">
                     <code class="peer-id">{{peerId}}</code>
-                    <button mat-icon-button (click)="copyPeerId()" matTooltip="Скопировать" aria-label="Скопировать ID комнаты">
+                    <button mat-icon-button (click)="copyPeerId()" matTooltip="Copy" aria-label="Copy Room ID">
                         <span class="material-icons" aria-hidden="true">content_copy</span>
                     </button>
                 </div>
                 <p class="hint-text">
-                    Передайте этот ID другим игрокам. Вы можете начать играть даже без подключённых гостей.
+                    Share this ID with other players. You can start playing even without any guests connected.
                 </p>
                 <button mat-raised-button color="accent" (click)="onHostStartGameClick()">
-                    Начать игру
+                    Start Game
                 </button>
             </div>
 
@@ -81,23 +81,23 @@
         <div *ngIf="activeTab === 'join'" class="panel">
 
             <p class="hint-text">
-                Введите <strong>ID комнаты</strong>, который дал вам хост, и выберите свою роль.
+                Enter the <strong>Room ID</strong> given to you by the host, then choose your role.
             </p>
 
             <div class="field-row">
                 <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>ID комнаты хоста</mat-label>
+                    <mat-label>Host Room ID</mat-label>
                     <input matInput [formControl]="peerIdControl" placeholder="cn-abc1234">
-                    <mat-error *ngIf="peerIdControl.invalid">Введите корректный ID</mat-error>
+                    <mat-error *ngIf="peerIdControl.invalid">Please enter a valid Room ID</mat-error>
                 </mat-form-field>
             </div>
 
             <!-- Role selection -->
             <div class="field-row">
-                <label class="role-label">Ваша роль:</label>
+                <label class="role-label">Your role:</label>
                 <mat-radio-group [(ngModel)]="joinRole" class="role-group">
-                    <mat-radio-button value="spymaster">Капитан (Spymaster)</mat-radio-button>
-                    <mat-radio-button value="operative">Игрок (Operative)</mat-radio-button>
+                    <mat-radio-button value="spymaster">Spymaster</mat-radio-button>
+                    <mat-radio-button value="operative">Operative</mat-radio-button>
                 </mat-radio-group>
             </div>
 
@@ -105,7 +105,7 @@
                 <button mat-raised-button color="primary"
                     [disabled]="peerIdControl.invalid || joinConnecting"
                     (click)="onJoinClick()">
-                    Подключиться
+                    Connect
                 </button>
             </div>
 
@@ -115,6 +115,6 @@
     </mat-card-content>
 
     <mat-card-actions align="end">
-        <button mat-button (click)="onBackClick()">Назад</button>
+        <button mat-button (click)="onBackClick()">Back</button>
     </mat-card-actions>
 </mat-card>

@@ -14,8 +14,8 @@ export class PageErrorComponent implements OnInit {
 
     code = 0;
     codeToMessage = {
-        404: 'Похоже, ссылка на эту игру уже устарела. Но всегда можно начать новую!',
-        500: 'Что-то пошло не так...'
+        404: 'This game link appears to have expired. You can always start a new one!',
+        500: 'Something went wrong...'
     };
 
     ngOnInit(): void {

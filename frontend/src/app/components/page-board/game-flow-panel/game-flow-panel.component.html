@@ -1,11 +1,11 @@
 <div class="container">
     <div class="game-log">
-        <div class="mat-h3">Вести из Центра</div>
+        <div class="mat-h3">HQ Dispatch</div>
 
         <div class="messages-area">
             <div class="muted" *ngIf="log.length == 0">
-                Центр сохраняет молчание.<br>
-                <small>Чтобы начать раскрывать агентов нужна шифровка из Центра.</small>
+                Headquarters is silent.<br>
+                <small>A clue from the Spymaster is needed before Operatives can uncover agents.</small>
             </div>
 
             <div *ngFor="let turn of log" class="turn">
@@ -15,7 +15,7 @@
     </div>
 
     <div class="spymaster-controls" *ngIf="playerType == SPYMASTER">
-        <div class="mat-h3">Отправить шифровку</div>
+        <div class="mat-h3">Send Clue</div>
 
         <app-spymaster-hint-input class="hint-input"
             [side]="nextHintSide"
@@ -27,7 +27,7 @@
             (click)="onSendClick()"
             [class.send-button-blue]="nextHintSide == BLUE"
             [class.send-button-red]="nextHintSide == RED">
-            Отправить
+            Send
         </button>
     </div>
 </div>

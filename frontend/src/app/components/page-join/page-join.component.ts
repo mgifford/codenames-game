@@ -30,7 +30,7 @@ export class PageJoinComponent implements OnInit {
     async onCopyLinkClick(event: MouseEvent) {
         event.preventDefault();
         await this.clipboard.copy(this.navigation.getJoinLink(this.gameId));
-        this.snackBar.open('Ссылка скопирована в буфер обмена.', 'Огонь!', {
+        this.snackBar.open('Link copied to clipboard.', 'Nice!', {
             horizontalPosition: 'center',
             duration: 3000
         });

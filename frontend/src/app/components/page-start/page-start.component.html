@@ -4,29 +4,28 @@
     <mat-card-title>Codenames</mat-card-title>
 
     <mat-card-subtitle>
-        Codenames — настольная игра, придуманная Владей Хватилом и
-        опубликованная в 2015 году издательством Czech Games Edition.
+        Codenames — the board game by Vlaada Chvátil, published in 2015 by Czech Games Edition.
     </mat-card-subtitle>
 
     <p>
-        Для того чтобы начать играть нажмите <span class="b">Создать новую игру</span>.
-        Другие участники смогут присоединиться к игре после ее создания в любой момент.
+        Click <span class="b">New Game</span> to create a server-based game.
+        Other players can join at any time once a game is created.
     </p>
 
     <p>
-        Для игры без сервера через прямое P2P-соединение используйте кнопку
-        <span class="b">P2P режим</span> — работает на GitHub Pages и в локальной сети.
+        To play without a server using a direct P2P connection, use the
+        <span class="b">P2P Mode</span> button — works on GitHub Pages and on local networks.
     </p>
 
     <mat-card-actions align="end">
         <button mat-button color="warn" (click)="onRulesClick()">
-            Как играть?
+            How to Play
         </button>
         <button mat-stroked-button color="accent" (click)="onP2PClick()">
-            P2P режим
+            P2P Mode
         </button>
         <button mat-raised-button color="primary" (click)="onCreateGameClick()">
-            Создать новую игру
+            New Game
         </button>
     </mat-card-actions>
 </mat-card>

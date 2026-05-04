@@ -2,6 +2,6 @@
     [class.form-field-blue]="side == BLUE"
     [class.form-field-red]="side == RED">
 
-    <mat-label>Шифровка из Центра (слово и цифра)</mat-label>
+    <mat-label>Clue from Headquarters (word and number)</mat-label>
     <input matInput [formControl]="messageControl" autocomplete="off" (keydown.enter)="enter.emit($event)">
 </mat-form-field>

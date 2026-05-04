@@ -84,7 +84,7 @@ export class PageBoardComponent implements OnInit, OnDestroy, AfterViewInit {
 
     onCopyGameLinkClick() {
         this.clipboard.copy(this.navigation.getJoinLink(this.gameService.gameId));
-        this.snackBar.open('Ссылка скопирована в буфер обмена', 'Огонь!', { duration: 2000 });
+        this.snackBar.open('Link copied to clipboard', 'Nice!', { duration: 2000 });
     }
 
     onUncoverClick(index: number) {
