@@ -107,7 +107,7 @@ export class PeerGameService implements OnDestroy {
     private peer: Peer | null = null;
     private hostConn: DataConnection | null = null;       // Joiner → Host
     private guestConns: DataConnection[] = [];             // Host → Joiners
-    private currentWordListIndex = 0;
+    private currentWordListIndex = Math.max(0, WORD_LISTS.findIndex(l => l.id === 'english-standard'));
     private gameInChain = 1;
 
     // ─────────────────────────────────────────────────────────────────────────
