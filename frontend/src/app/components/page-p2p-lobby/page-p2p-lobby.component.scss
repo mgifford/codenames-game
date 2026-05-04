@@ -79,3 +79,19 @@
     color: rgba(0,0,0,0.6);
     font-style: italic;
 }
+
+.qr-block {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+}
+
+.qr-image {
+    width: 160px;
+    height: 160px;
+    display: block;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
