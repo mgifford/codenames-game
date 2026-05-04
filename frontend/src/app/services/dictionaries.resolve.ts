@@ -19,7 +19,7 @@ export class DictionariesResolve implements Resolve<DictionaryDescription[]> {
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         return this.dictionariesService.getDictionaries()
             .pipe(catchError(err => {
-                this.snackBar.open('Что-то пошло не так: Не получается создать игру', 'Тваю ж мать!');
+                this.snackBar.open('Something went wrong: Failed to create game', 'Dismiss');
                 return throwError(err);
             }));
     }
