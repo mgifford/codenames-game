@@ -38,7 +38,7 @@ export class GameService {
                 distinct(value => this.isConnected))
             .subscribe(value => {
                 if (!this.isConnected)
-                    this.snackBar.open('Плохое соединение!', 'Твою ж мать!', { duration: 5000 })
+                    this.snackBar.open('Poor connection!', 'Dismiss', { duration: 5000 })
             });
 
         this.gameStream$
@@ -101,8 +101,8 @@ export class GameService {
     private onSendHintError(error: any) {
         if (error instanceof HttpErrorResponse && error.status === 400) {
             this.snackBar.open(
-                'Вы что-то не то ввели, коллега! \nПроверьте: нужно ровно ОДНО СЛОВО и через ПРОБЕЛ ЦИФРА от 0 до 9',
-                'Спасибо', {
+                'Invalid input! \nCheck: exactly ONE WORD followed by a SPACE and a NUMBER from 0 to 9',
+                'OK', {
                     duration: 6000,
                     horizontalPosition: 'start'
                 });
@@ -134,8 +134,8 @@ export class GameService {
     private onUncoverAgentError(error: any) {
         if (error instanceof HttpErrorResponse && error.status === 400) {
             this.snackBar.open(
-                'Не время раскрывать, ждем шифровку из Центра!',
-                'Так и быть', {
+                'Not the right time to reveal — waiting for the spymaster\'s hint!',
+                'Got it', {
                     duration: 5000
                 });
         }
@@ -222,14 +222,14 @@ export class GameService {
 
     private onGameFinished() {
         this.snackBar.open(
-            'Игра завершена. \nНажмите \'Создать новую игру\' чтобы продолжить в той же компании!',
-            'Супер!');
+            'Game over. \nClick \'New Game\' to continue with the same group!',
+            'Great!');
     }
 
     private onUnknownGameError() {
         this.snackBar.open(
-            'Ошибка: Что-то пошло не так',
-            'Тваю ж мать!');
+            'Error: Something went wrong',
+            'Dismiss');
     }
 }
 
