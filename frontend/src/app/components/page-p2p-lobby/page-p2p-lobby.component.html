@@ -69,6 +69,10 @@
                 <p class="hint-text">
                     Share this ID with other players. You can start playing even without any guests connected.
                 </p>
+                <div *ngIf="qrCodeDataUrl" class="qr-block">
+                    <p class="room-label">Scan to join:</p>
+                    <img [src]="qrCodeDataUrl" alt="QR code to join this room" class="qr-image">
+                </div>
                 <button mat-raised-button color="accent" (click)="onHostStartGameClick()">
                     Start Game
                 </button>

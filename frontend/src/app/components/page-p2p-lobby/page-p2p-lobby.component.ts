@@ -1,8 +1,10 @@
 import { Location } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import * as QRCode from 'qrcode';
 import { AppRoutingNavigationService } from '../../app-routing-navigation.service';
 import { PeerGameService } from '../../services/peer-game.service';
 import { P2PRole } from '../../services/p2p-types';
@@ -20,6 +22,7 @@ export class PageP2PLobbyComponent implements OnInit, OnDestroy {
         private peerService: PeerGameService,
         private navigation: AppRoutingNavigationService,
         private location: Location,
+        private route: ActivatedRoute,
         private cd: ChangeDetectorRef) {}
 
     // ── UI state ──────────────────────────────────────────────────────────────
@@ -35,6 +38,7 @@ export class PageP2PLobbyComponent implements OnInit, OnDestroy {
     peerId: string | null = null;
     hostWaiting = false;
     hostReady = false;   // board generated, waiting for joiners
+    qrCodeDataUrl: string | null = null;
 
     // Join flow
     peerIdControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
@@ -50,6 +54,13 @@ export class PageP2PLobbyComponent implements OnInit, OnDestroy {
         // Reset any previous session
         this.peerService.reset();
 
+        // Pre-fill join tab when arriving via QR-code link (?join=<roomId>)
+        const joinParam = this.route.snapshot.queryParamMap.get('join');
+        if (joinParam) {
+            this.activeTab = 'join';
+            this.peerIdControl.setValue(joinParam);
+        }
+
         this.peerService.localPeerId$
             .pipe(takeUntil(this.destroy$))
             .subscribe(id => {
@@ -57,6 +68,7 @@ export class PageP2PLobbyComponent implements OnInit, OnDestroy {
                 if (id) {
                     this.hostStatus = 'Room created. Share the Room ID with other players.';
                     this.hostReady = true;
+                    this.generateQrCode(id);
                 }
                 this.cd.markForCheck();
             });
@@ -123,5 +135,20 @@ export class PageP2PLobbyComponent implements OnInit, OnDestroy {
         if (this.peerId) {
             navigator.clipboard.writeText(this.peerId).catch(() => {});
         }
+    }
+
+    // ── Private helpers ───────────────────────────────────────────────────────
+
+    private generateQrCode(roomId: string) {
+        const url = new URL(window.location.href);
+        url.search = '';
+        url.hash = '';
+        url.searchParams.set('join', roomId);
+        QRCode.toDataURL(url.toString(), { width: 200, margin: 1 })
+            .then(dataUrl => {
+                this.qrCodeDataUrl = dataUrl;
+                this.cd.markForCheck();
+            })
+            .catch(() => {});
     }
 }
