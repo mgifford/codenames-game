@@ -32,7 +32,7 @@ export class PageP2PLobbyComponent implements OnInit, OnDestroy {
 
     // Host flow
     wordLists: WordList[] = WORD_LISTS;
-    selectedWordListIndex = WORD_LISTS.findIndex(l => l.id === 'english-standard');
+    selectedWordListIndex = Math.max(0, WORD_LISTS.findIndex(l => l.id === 'english-standard'));
     hostRole: P2PRole = 'spymaster';
     hostStatus = '';
     peerId: string | null = null;
