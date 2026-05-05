@@ -1,6 +1,6 @@
 <mat-card class="mat-elevation-z4 lobby-card">
-    <mat-card-title>Codenames – P2P Mode</mat-card-title>
-    <mat-card-subtitle>Serverless play via direct peer-to-peer connection</mat-card-subtitle>
+    <mat-card-title>Codenames</mat-card-title>
+    <mat-card-subtitle>Play directly between devices — no game server required</mat-card-subtitle>
 
     <mat-card-content>
 
@@ -121,4 +121,70 @@
     <mat-card-actions align="end">
         <button mat-button (click)="onBackClick()">Back</button>
     </mat-card-actions>
+
+    <!-- ── HOW IT WORKS ───────────────────────────────────────────────────── -->
+    <mat-divider></mat-divider>
+
+    <div class="info-section">
+        <button mat-button class="info-toggle" (click)="showInfo = !showInfo" aria-expanded="showInfo">
+            <span class="material-icons info-icon" aria-hidden="true">info_outline</span>
+            How does P2P work?
+            <span class="material-icons toggle-arrow" aria-hidden="true">{{showInfo ? 'expand_less' : 'expand_more'}}</span>
+        </button>
+
+        <div *ngIf="showInfo" class="info-content">
+            <p>
+                <strong>No game server needed.</strong>
+                This game uses <a href="https://peerjs.com/" target="_blank" rel="noopener">PeerJS</a>,
+                a library built on the browser's built-in
+                <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API" target="_blank" rel="noopener">WebRTC</a>
+                standard. Once two players are connected, all game messages travel
+                <em>directly between browsers</em> — no cloud server is involved in gameplay.
+            </p>
+
+            <p><strong>What internet access is needed?</strong></p>
+            <ul>
+                <li>
+                    <strong>Initial connection only (a few seconds):</strong> PeerJS contacts a free
+                    signalling server (<code>0.peerjs.com</code>) to exchange the connection handshake
+                    between players. This takes only a moment.
+                </li>
+                <li>
+                    <strong>After the handshake, no internet is used.</strong> All game data flows
+                    peer-to-peer between the players' devices.
+                </li>
+            </ul>
+
+            <p><strong>Can two phones play without internet?</strong></p>
+            <ul>
+                <li>
+                    <strong>Yes, on a shared local network</strong> (same Wi-Fi or one phone acting as
+                    a mobile hotspot): once the initial handshake succeeds, game traffic stays entirely
+                    on that local network.
+                </li>
+                <li>
+                    <strong>Hotspot tip:</strong> If one phone shares its mobile data as a hotspot,
+                    the other phone connects to it. The hotspot provider's internet is used only for
+                    the ~2-second PeerJS handshake; after that, all game traffic stays on the hotspot
+                    network itself.
+                </li>
+                <li>
+                    <strong>Completely offline (no shared network):</strong> Not supported out of
+                    the box. A local
+                    <a href="https://github.com/peers/peerjs-server" target="_blank" rel="noopener">peerjs-server</a>
+                    on the same LAN removes the internet dependency entirely —
+                    see the
+                    <a href="https://github.com/mgifford/codenames-game/blob/master/docs/peerjs-local-gaming.md"
+                       target="_blank" rel="noopener">local gaming guide</a>
+                    for details.
+                </li>
+            </ul>
+        </div>
+
+        <p class="server-mode-note">
+            Running the Node.js server?
+            <a (click)="onServerModeClick()" class="server-mode-link">Switch to server mode</a>
+        </p>
+    </div>
+
 </mat-card>

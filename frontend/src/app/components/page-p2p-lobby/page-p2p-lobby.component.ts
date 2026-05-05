@@ -46,6 +46,8 @@ export class PageP2PLobbyComponent implements OnInit, OnDestroy {
     joinStatus = '';
     joinConnecting = false;
 
+    showInfo = false;
+
     private destroy$ = new Subject<void>();
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -129,6 +131,11 @@ export class PageP2PLobbyComponent implements OnInit, OnDestroy {
     onBackClick() {
         this.peerService.reset();
         this.location.back();
+    }
+
+    onServerModeClick() {
+        this.peerService.reset();
+        this.navigation.toNewGame();
     }
 
     copyPeerId() {

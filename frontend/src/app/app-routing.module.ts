@@ -11,8 +11,8 @@ import { PageStartComponent } from './components/page-start/page-start.component
 import { DictionariesResolve } from './services/dictionaries.resolve';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'start', pathMatch: 'full' },
-    { path: 'start', component: PageStartComponent },
+    { path: '', redirectTo: 'p2p/lobby', pathMatch: 'full' },
+    { path: 'start', redirectTo: 'p2p/lobby', pathMatch: 'full' },
     { path: 'rules', component: PageRulesComponent },
     {
         path: 'game/new',
