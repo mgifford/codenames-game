@@ -126,7 +126,7 @@
     <mat-divider></mat-divider>
 
     <div class="info-section">
-        <button mat-button class="info-toggle" (click)="showInfo = !showInfo" aria-expanded="showInfo">
+        <button mat-button class="info-toggle" (click)="showInfo = !showInfo" [attr.aria-expanded]="showInfo">
             <span class="material-icons info-icon" aria-hidden="true">info_outline</span>
             How does P2P work?
             <span class="material-icons toggle-arrow" aria-hidden="true">{{showInfo ? 'expand_less' : 'expand_more'}}</span>
